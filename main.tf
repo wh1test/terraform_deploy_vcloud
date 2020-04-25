@@ -27,6 +27,7 @@ resource "vcd_vapp_vm" var.vcd_vapp_name {
     type               = var.vm_network_type
     name               = var.vm_network_name
     ip_allocation_mode = var.ip_allocation_mode
+    ip                 = var.net_ip
     is_primary         = var.net_is_primary
   }
   

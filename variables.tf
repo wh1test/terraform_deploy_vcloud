@@ -19,24 +19,16 @@ variable "vm_network_type" {
 variable "net_ip_allocation_mode" {
   default = "POOL"  
 }
+variable "net_ip" {
+  default = null
+}
 variable "net_is_primary" {
   default = true
 }
-
-
-
 variable "vm_role" {}
 variable "vm_env" {
   default = "stage"
 }
 variable "vm_version" {}
 
-variable "vsphere_virtual_ipv4_address" {
-  default = null
-}
-variable "vsphere_virtual_ipv4_gateway" {
-  default = null
-}
-variable "vsphere_virtual_ipv4_netmask" {
-    default = null
-}
+
