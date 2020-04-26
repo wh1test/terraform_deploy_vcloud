@@ -1,24 +1,27 @@
 provider "vcd" {
-  user     = var.admin_user
-  password = var.admin_password
+  user  = var.vcd_user
+  password  = var.vcd_pass
   org      = var.org
-  vdc      = var.org
+  vdc      = var.vdc
   url      = var.url
+  allow_unverified_ssl = true
+  max_retry_timeout = "240"
 }
 
-resource "vcd_vapp_vm" var.vcd_vapp_name {
+resource "vcd_vapp_vm" "vApp_k8s" {
   vapp_name     = var.vcd_vapp_name
-  name          = var.vcd_vm_name
+  name          = var.vm_name
   computer_name = var.vm_name
   catalog_name  = var.template_folder
   template_name = var.template_name
   memory        = var.vm_memory
   cpus          = var.vm_cpus
   cpu_cores     = var.vm_cpu_cores
+  power_on      = var.vm_power_on
 
   metadata = {
     role    = var.vm_role
-    env     = vm.vm_env
+    env     = var.vm_env
     version = var.vm_version
     my_key  = "my value"
   }
@@ -26,7 +29,7 @@ resource "vcd_vapp_vm" var.vcd_vapp_name {
   network {
     type               = var.vm_network_type
     name               = var.vm_network_name
-    ip_allocation_mode = var.ip_allocation_mode
+    ip_allocation_mode = var.net_ip_allocation_mode
     ip                 = var.net_ip
     is_primary         = var.net_is_primary
   }
