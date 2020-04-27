@@ -8,7 +8,7 @@ provider "vcd" {
   max_retry_timeout = "240"
 }
 
-resource "vcd_vapp_vm" "tf-vapp" {
+resource "vcd_vapp_vm" "change_me" {
   vapp_name     = var.vcd_vapp_name
   name          = var.vm_name
   computer_name = var.vm_name
