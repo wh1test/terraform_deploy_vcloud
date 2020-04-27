@@ -11,8 +11,9 @@ provider "vcd" {
 resource "vcd_vapp" "change_vapp_change" {
   name = var.vcd_vapp_name
 }
-​
-resource "vcd_vapp_org_network" "change_orgnet_change" {
+
+
+resource "vcd_vapp_org_network" "change_orgnet" {
   vapp_name        = vcd_vapp.web.name
   org_network_name = var.vm_network_name
 }
