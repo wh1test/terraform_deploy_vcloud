@@ -8,7 +8,16 @@ provider "vcd" {
   max_retry_timeout = "240"
 }
 
-resource "vcd_vapp_vm" "change_me" {
+resource "vcd_vapp" "change_vapp_change" {
+  name = var.vcd_vapp_name
+}
+​
+resource "vcd_vapp_org_network" "change_orgnet_change" {
+  vapp_name        = vcd_vapp.web.name
+  org_network_name = var.vm_network_name
+}
+
+resource "vcd_vapp_vm" "change_vapp_change" {
   vapp_name     = var.vcd_vapp_name
   name          = var.vm_name
   computer_name = var.vm_name
@@ -28,7 +37,7 @@ resource "vcd_vapp_vm" "change_me" {
 
   network {
     type               = var.vm_network_type
-    name               = var.vm_network_name
+    name               = vcd_vapp_org_network.change_orgnet.org_network_name
     ip_allocation_mode = var.net_ip_allocation_mode
     ip                 = var.net_ip
     is_primary         = var.net_is_primary
